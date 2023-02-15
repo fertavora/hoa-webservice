@@ -2,3 +2,6 @@
 .yarn/
 node_modules/
 test.http
+.vscode/
+.env
+db/
