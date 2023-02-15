@@ -1,73 +1,14 @@
 import dotenv from 'dotenv'; 
 import express from 'express';
-import { DataTypes, Sequelize } from 'sequelize';
-import passport from 'passport';
-import { Strategy as LocalStrategy } from 'passport-local';
-import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
+import passport from './middleware/passport';
 import jwt from 'jsonwebtoken';
+import User from './models/user';
 
 dotenv.config();
-
-// DB SET UP
-const sequelize = new Sequelize('sqlite::memory:');
-
-sequelize.sync();
-
-const User = sequelize.define('User', {
-  username: DataTypes.STRING,
-  password: DataTypes.STRING,
-});
 
 const host:any = process.env.API_HOST;
 const port:any = process.env.API_PORT;
 const jwtSecret:any = process.env.JWT_SECRET;
-// (async () => {
-//   try {
-//     await sequelize.authenticate();
-//     console.log("Connection has been established successfully.");
-//   } catch (error) {
-//     console.error("Unable to connect to the database:", error);
-//   }
-// })();
-
-
-// PASSPORT SETUP - LOCAL
-
-passport.use(new LocalStrategy(async (username:string, password:string, done:Function) => {
-  try{
-    const checkUserExists:any = await User.findOne({ where: { username } });
-    if(checkUserExists === null) {
-      return done(null, false);
-    }
-    if(checkUserExists.password === password) {
-      return done(null, checkUserExists);
-    } else {
-      return done(null, false);
-    }
-  } catch(error) {
-    return done(error);
-  }
-}));
-
-// PASSPORTS SETUP - JWT
-const jwtOptions:any = {
-  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: jwtSecret,
-}
-
-passport.use(new JwtStrategy(jwtOptions, async (jwtPayload:any, done:Function) => {
-  try {
-    const { username } = jwtPayload;
-    const checkUserExists = await User.findOne({ where: { username } });
-    if(checkUserExists === null) {
-      return done(null, false);
-    } else {
-      return done(null, checkUserExists);
-    }
-  } catch(error) {
-    return done(error);
-  }
-}));
 
 // API SET UP
 const app = express();
