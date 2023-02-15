@@ -26,7 +26,7 @@
     "winston": "^3.8.2"
   },
   "scripts": {
-    "start": "nodemon expressapi.ts"
+    "start": "nodemon server.ts"
   },
   "packageManager": "yarn@1.22.19"
 }
