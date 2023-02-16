@@ -13,6 +13,7 @@
     "@types/passport": "^1.0.11",
     "@types/passport-jwt": "^3.0.8",
     "@types/passport-local": "^1.0.34",
+    "@types/pg": "^8.6.6",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
@@ -21,12 +22,14 @@
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
+    "pg": "^8.9.0",
     "sequelize": "^6.28.0",
     "sqlite3": "^5.1.4",
     "winston": "^3.8.2"
   },
   "scripts": {
-    "start": "nodemon server.ts"
+    "dev": "nodemon server.ts",
+    "start": "node server.ts"
   },
   "packageManager": "yarn@1.22.19"
 }
