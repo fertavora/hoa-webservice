@@ -6,7 +6,7 @@ morgan.token('trace-id', (request:any) => {
   return request['trace-id'];
 });
 
-export type RequestWithTraceId <T> = Partial<T>
+type RequestWithTraceId <T> = Partial<T>
   & { 'trace-id': string }
 
 export const addTraceIdHeader:any = (request:RequestWithTraceId<express.Request>, response:express.Response, next:express.NextFunction) => {
