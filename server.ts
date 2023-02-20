@@ -29,7 +29,8 @@ app.listen(port, host, () => {
   console.info(`Express server is started at ${host}:${port}.`);
 });
 
-// todo create heroku account and deploy
-// todo models for consorcio
 // todo add winston to log info
 // todo add supertest testing
+// todo add ping healthcheck endpoint
+// todo create heroku account and deploy
+// todo models for consorcio
