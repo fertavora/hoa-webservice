@@ -11,7 +11,7 @@ const environment:any = process.env.NODE_ENV;
 let sequelize:typeof Sequelize;
 
 const setEnvironment:any = {
-  development: () => new Sequelize('sqlite::memory:'),
+  development: () => new Sequelize('sqlite::memory:', { logging: false }),
   production: () => new Sequelize(dbname, user, password, {
     dialect: 'postgres',
     logging: false

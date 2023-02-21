@@ -16,6 +16,6 @@ export const addTraceIdHeader:any = (request:RequestWithTraceId<express.Request>
   next();
 }
 
-export const morganFormat:string = ':date[iso] - :method :url - :status :response-time ms - :trace-id';
+export const morganFormat:string = ':method :url - :status :response-time ms - :trace-id';
 
 export default morgan;

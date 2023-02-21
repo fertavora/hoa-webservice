@@ -5,3 +5,4 @@ test.http
 .vscode/
 .env
 db/
+logs/

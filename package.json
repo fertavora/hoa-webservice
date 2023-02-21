@@ -36,7 +36,7 @@
   },
   "scripts": {
     "dev": "nodemon server.ts",
-    "start": "node server.ts"
+    "start": "ts-node server.ts"
   },
   "packageManager": "yarn@1.22.19"
 }
