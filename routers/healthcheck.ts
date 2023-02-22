@@ -9,7 +9,7 @@ healthcheck.get('/ping', async (request:express.Request, response:express.Respon
     response.send(200).json({ status: 'Service is up and running. DB connected succesfully.' });
     return;
   } catch (error) {
-    response.send(500).json({ status: 'Service not available.' });
+    response.send(500).json({ status: 'Service not available.', error });
     return;
   }
 });
