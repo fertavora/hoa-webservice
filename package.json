@@ -1,8 +1,11 @@
 {
-  "name": "node-ts-rest-api",
+  "name": "hoa-webservice",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "engines": {
+    "node": "18.13.0"
+  },
   "dependencies": {
     "@faker-js/faker": "^7.6.0",
     "@types/cors": "^2.8.13",
