@@ -4,7 +4,7 @@ import logger from './utils/logger';
 dotenv.config();
 
 const host:any = process.env.API_HOST;
-const port:any = process.env.API_PORT;
+const port:any = process.env.PORT || process.env.API_PORT;
 
 import app from './app'; 
 
