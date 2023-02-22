@@ -7,7 +7,7 @@ const login:express.Router = express.Router();
 
 const jwtSecret:any = process.env.JWT_SECRET;
 
-login.post('/login', passport.authenticate('local', { session: false }),async (request:express.Request, response:express.Response) =>{
+login.post('/login', passport.authenticate('local', { session: false }),async (request:express.Request, response:express.Response) => {
   const { username } = request.body;
   logger.info(`Loging in user ${username}`);
   const jwtToken = jwt.sign(
