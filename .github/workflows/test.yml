@@ -1,6 +1,8 @@
 name: test-hoa-webservice
 run-name: Testing branch ${{ github.ref_name }}
 on: [push]
+env:
+  NODE_ENV: development
 jobs:
   test-hoa-webservice:
     runs-on: ubuntu-latest
