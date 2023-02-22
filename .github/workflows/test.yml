@@ -1,5 +1,5 @@
 name: test-hoa-webservice
-run-name: ${{ github.actor }} is testing branch ${{ github.ref_name }}
+run-name: Testing branch ${{ github.ref_name }}
 on: [push]
 jobs:
   test-hoa-webservice:
@@ -10,4 +10,6 @@ jobs:
         with:
           node-version: '18'
       - run: ls
+      - run: node -v
+      - run: npm install --global yarn
       - run: yarn -v
