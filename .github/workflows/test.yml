@@ -1,0 +1,21 @@
+name: test-hoa-webservice
+run-name: Testing branch ${{ github.ref_name }}
+on: [push]
+env:
+  NODE_ENV: development
+  API_PORT: 6000
+  API_HOST: 127.0.0.1
+  JWT_SECRET: TAVETE_SECRET
+jobs:
+  test-hoa-webservice:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - run: ls
+      - run: node -v
+      - run: npm install --global yarn
+      - run: yarn install
+      - run: yarn test
