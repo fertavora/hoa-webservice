@@ -1,7 +1,9 @@
 .DS_Store
 .yarn/
+.yarnrc.yml
 node_modules/
 test.http
 .vscode/
 .env
 db/
+logs/
