@@ -3,13 +3,12 @@ import logger from './utils/logger';
 
 dotenv.config();
 
-const host:any = process.env.API_HOST;
 const port:any = process.env.PORT || process.env.API_PORT;
 
 import app from './app'; 
 
-app.listen(port, host, () => {
-  logger.info(`Express server is started at ${host}:${port}.`);
+app.listen(port, () => {
+  logger.info(`Express server is started at port ${port}.`);
 });
 
 // todo models for consorcio
