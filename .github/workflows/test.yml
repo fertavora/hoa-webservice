@@ -1,5 +1,5 @@
 name: test-hoa-webservice
-run-name: ${{ github.actor }} is testing
+run-name: ${{ github.actor }} is testing branch ${{ github.ref_name }}
 on: [push]
 jobs:
   test-hoa-webservice:
