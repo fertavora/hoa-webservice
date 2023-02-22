@@ -2,11 +2,12 @@ name: test-hoa-webservice
 run-name: ${{ github.actor }} is testing
 on: [push]
 jobs:
-  check-bats-version:
+  test-hoa-webservice:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - run: pwd
+      - run: ls
+      - run: yarn -v
