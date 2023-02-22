@@ -3,6 +3,9 @@ run-name: Testing branch ${{ github.ref_name }}
 on: [push]
 env:
   NODE_ENV: development
+  API_PORT: 6000
+  API_HOST: 127.0.0.1
+  JWT_SECRET: TAVETE_SECRET
 jobs:
   test-hoa-webservice:
     runs-on: ubuntu-latest
