@@ -9,6 +9,7 @@ describe('HOA Webservice', () => {
     const response = await request(app)
       .get('/api/v1/ping');
     assert.equal(response.status, 200);
+    assert.equal(response.body.status, 'Service is up and running. DB connected succesfully.');
   });
 
   it('Register new user', async () => {
