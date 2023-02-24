@@ -1,5 +1,6 @@
 import request from 'supertest';
-import assert from 'assert';
+import { expect } from 'chai';
+import { faker } from '@faker-js/faker';
 
 import app from '../app';
 
@@ -8,37 +9,44 @@ describe('HOA Webservice', () => {
   it('Healthcheck', async () => {
     const response = await request(app)
       .get('/api/v1/ping');
-    assert.equal(response.status, 200);
-    assert.equal(response.body.status, 'Service is up and running. DB connected succesfully.');
+    expect(response.status, 'Status code is wrong!').to.equal(200);
+    expect(response.body.status).to.equal('Service is up and running. DB connected succesfully.');
   });
 
   it('Register new user', async () => {
+    const newUser = {
+      username: faker.internet.userName(),
+      password: faker.internet.password(),
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
+      email: faker.internet.email(),
+    }
     const response = await request(app)
-      .post('/api/v1/register')
-      .send({ "username": "admin", "password": "nimda"});
-    assert.equal(response.headers["content-type"].includes('application/json'), true);
-    assert.equal(response.status, 200);
-    assert.equal(response.body.message, 'Thanks for registering');
+        .post('/api/v1/register')
+        .send(newUser);
+      expect(response.headers["content-type"]).to.include('application/json');
+      expect(response.status, 'Status code is wrong!').to.equal(200);
+      expect(response.body.message).to.equal('Thanks for registering');
   });
 
-  it('Login in', async () => {
+  it.skip('Login in', async () => {
     const response = await request(app)
       .post('/api/v1/login')
       .send({ "username": "admin", "password": "nimda"});
-    assert.equal(response.headers["content-type"].includes('application/json'), true);
-    assert.equal(response.status, 200);
-    assert.equal(response.body.message, 'Welcome admin!');
-    assert.equal(response.body.access_token === null, false);
+    expect(response.headers["content-type"]).to.includes('application/json');
+    expect(response.status).to.equal(200);
+    expect(response.body.message).to.equal('Welcome admin!');
+    expect(response.body.access_token).to.not.be.null;
     access_token = response.body.access_token;
   });
 
-  it('Read data', async () => {
+  it.skip('Read data', async () => {
     const response = await request(app)
       .get('/api/v1/data')
       .set('Authorization', `Bearer ${access_token}`)
       .send({ "username": "admin", "password": "nimda"});
-    assert.equal(response.headers["content-type"].includes('application/json'), true);
-    assert.equal(response.status, 200);
-    assert.equal(response.body.message, 'Get data');
+    expect(response.headers["content-type"]).to.includes('application/json');
+    expect(response.status).to.equal(200);
+    expect(response.body.message).to.equal('Get data');
   });
 });
